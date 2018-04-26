@@ -9,7 +9,8 @@
     
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="B2VConverter"/>
-        <conv:InverseBooleanToVisibilityConverter x:Key="InvB2VConverter"/>
+        <!--<conv:InverseBooleanToVisibilityConverter x:Key="InvB2VConverter"/>-->
+        <conv:FlexibleBooleanToVisibilityConverter x:Key="B2VFlaxConverter"/>
     </Window.Resources>
     
     <StackPanel>
@@ -18,11 +19,13 @@
         <Ellipse Width="50" Height="50" Fill="Red"
                  HorizontalAlignment="Left" Margin="0 10 0 0"
                  Visibility="{Binding ElementName=CheckBoxForCircle,Path=IsChecked,
-                             Converter={StaticResource B2VConverter}}"/>
+                             Converter={StaticResource B2VFlaxConverter},
+                                ConverterParameter=Visible|Hidden}"/>
         
         <Rectangle Width="50" Height="50"
                    HorizontalAlignment="Left" Fill="Blue" Margin="0 10 0 0"
                    Visibility="{Binding ElementName=CheckBoxForCircle,Path=IsChecked,
-                                Converter={StaticResource InvB2VConverter}}"/>
+                                Converter={StaticResource B2VFlaxConverter},
+                                ConverterParameter=Hidden|Visible}"/>
     </StackPanel>
 </Window>
