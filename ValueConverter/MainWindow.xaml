@@ -3,10 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ValueConverter"
+        xmlns:l="clr-namespace:ValueConverter"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="B2VConverter"/>
+    </Window.Resources>
+    
+    <StackPanel>
+        <CheckBox Name="CheckBoxForCircle" IsChecked="True">Show Circle</CheckBox>
         
-    </Grid>
+        <Ellipse Width="50" Height="50" Fill="Red"
+                 HorizontalAlignment="Left" Margin="0 10 0 0"
+                 Visibility="{Binding ElementName=CheckBoxForCircle,Path=IsChecked,
+                             Converter={StaticResource B2VConverter}}"/>
+        
+        <Rectangle Width="50" Height="50"
+                   HorizontalAlignment="Left" Fill="Blue" Margin="0 10 0 0"/>
+    </StackPanel>
 </Window>
